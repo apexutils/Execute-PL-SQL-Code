@@ -3,7 +3,7 @@
   "version" : "1.0",
   "description" : "A more powerful Execute PL/SQL Code dynamic action.",
   "keywords" : ["execute plsql", "notifications", "clob", "spinner"],
-  "homepage" : "https://www.apexutils.com",
+  "homepage" : "https://github.com/apexutils/Execute-PL-SQL-Code",
   "license" : "MIT",
   "author" : {
     "name" : "Stefan Dobre",
