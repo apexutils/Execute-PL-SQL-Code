@@ -3,7 +3,7 @@
   "version" : "1.0",
   "description" : "A more powerful Execute PL/SQL Code dynamic action.",
   "keywords" : ["execute plsql", "notifications", "clob", "spinner"],
-  "homepage" : "https://github.com/Dani3lSun/apex-plugin-guidedtour",
+  "homepage" : "https://www.apexutils.com",
   "license" : "MIT",
   "author" : {
     "name" : "Stefan Dobre",
