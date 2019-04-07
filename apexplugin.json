@@ -1,0 +1,28 @@
+{
+  "name" : "APEX Utils - Execute PL/SQL Code",
+  "version" : "1.0",
+  "description" : "A more powerful Execute PL/SQL Code dynamic action.",
+  "keywords" : ["execute plsql", "notifications", "clob", "spinner"],
+  "homepage" : "https://github.com/Dani3lSun/apex-plugin-guidedtour",
+  "license" : "MIT",
+  "author" : {
+    "name" : "Stefan Dobre",
+    "email" : "apexutils@gmail.com",
+    "url" : "https://www.apexutils.com"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/apexutils/Execute-PL-SQL-Code"
+  },
+ "oracle" : {
+    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1"],
+    "apex" : {
+      "versions" : ["18.1.0", "18.2.0", "19.1.0"],
+      "plugin" : {
+        "internalName" : "COM.APEXUTILS.EXECUTE_PLSQL_CODE",
+        "type" : "dynamic action",
+        "demo" : "https://www.apexutils.com"
+      }
+    }
+  }
+}
