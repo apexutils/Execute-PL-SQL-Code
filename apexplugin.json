@@ -1,7 +1,7 @@
 {
   "name" : "APEX Utils - Execute PL/SQL Code",
-  "version" : "1.0",
-  "description" : "A more powerful Execute PL/SQL Code dynamic action.",
+  "version" : "1.0.1",
+  "description" : "A more powerful Execute PL/SQL Code dynamic action. It includes declarative notifications, spinners & CLOB support.",
   "keywords" : ["execute plsql", "notifications", "clob", "spinner"],
   "homepage" : "https://github.com/apexutils/Execute-PL-SQL-Code",
   "license" : "MIT",
@@ -15,7 +15,7 @@
     "url" : "https://github.com/apexutils/Execute-PL-SQL-Code"
   },
  "oracle" : {
-    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1"],
+    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1", "18.1.0"],
     "apex" : {
       "versions" : ["18.1.0", "18.2.0", "19.1.0"],
       "plugin" : {
