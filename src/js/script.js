@@ -1,6 +1,9 @@
-var tempStyle = document.createElement('style');
-tempStyle.type="text/css";
-tempStyle.innerHTML = '.au-execute-customSpinnerClass{' +
+(function(){
+    //adding the style dynamically to the head
+    //too little for its own file
+    var tempStyle = document.createElement('style');
+    tempStyle.type="text/css";
+    tempStyle.innerHTML = '.au-execute-customSpinnerClass{' +
     'position: absolute !important;' +
     'left: 0 !important;' +
     'right: 0 !important;' +
@@ -8,7 +11,8 @@ tempStyle.innerHTML = '.au-execute-customSpinnerClass{' +
     'top: 0 !important;' +
     'bottom: 0 !important;' +
     'z-index: 450;}';
-document.head.appendChild(tempStyle);
+    document.head.appendChild(tempStyle);
+})();
 
 var apexutils = this.apexutils || {};
 
@@ -63,13 +67,14 @@ var apexutils = this.apexutils || {};
             pageItems        = JSON.parse(action.attribute01),
             loaderSettings   = JSON.parse(action.attribute02),
             clobSettings     = JSON.parse(action.attribute03),
-            actionIdentifier = action.attribute04,
+            //actionIdentifier = action.attribute04,
             options          = JSON.parse(action.attribute05),
             errorMessages    = JSON.parse(action.attribute06),
             sync             = (action.waitForResult && options.sync);
 
         
         /* Event "au-execute-plsql-start" */
+        /*
         var eventData = {
             preventDefault: false,
             eventId: actionIdentifier
@@ -80,7 +85,7 @@ var apexutils = this.apexutils || {};
         if(eventData.preventDefault){
             apex.debug('Execute PL/SQL Code execution with Event Identifier "' + actionIdentifier + '" was prevented.');
             return;
-        }
+        } */
         /* ------------------------------ */
 
         // Called by the AJAX clear callback to clear the values in the "Page Items to Return"
@@ -158,6 +163,7 @@ var apexutils = this.apexutils || {};
         // Error callback called when the Ajax call fails
         function _error( pjqXHR, pTextStatus, pErrorThrown ) {
             
+            /*
             var data = {
                 pjqXHR: pjqXHR,
                 pTextStatus: pTextStatus,
@@ -171,7 +177,9 @@ var apexutils = this.apexutils || {};
             
             if(!data.preventDefault){
                 da.handleAjaxErrors( pjqXHR, pTextStatus, pErrorThrown, resumeCallback );
-            }
+            }*/
+            
+            da.handleAjaxErrors( pjqXHR, pTextStatus, pErrorThrown, resumeCallback );
         }
         
         var lSpinner$;
@@ -212,7 +220,13 @@ var apexutils = this.apexutils || {};
                     clobToSubmit = item(clobSettings.submitClobItem).getValue();
                     break;
                 case 'javascriptvariable':
-                    clobToSubmit = window[clobSettings.submitClobVariable];
+                    var toSubmit = window[clobSettings.submitClobVariable];
+
+                    if(toSubmit instanceof Object){
+                        clobToSubmit = JSON.stringify(toSubmit);
+                    } else {
+                        clobToSubmit = toSubmit;
+                    }
                     break;
                 default:
                     break;
