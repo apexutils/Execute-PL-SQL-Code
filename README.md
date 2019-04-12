@@ -6,7 +6,7 @@ https://www.apexutils.com/
 
 ## Changelog
 
-#### 1.0.1 - Added Plugin attribute comments, added #SQLERRM_TEXT# substitution string
+#### 1.0.1 - Added Plugin help text, added #SQLERRM_TEXT# substitution string
 #### 1.0.0 - Initial Release
 
 ## License
