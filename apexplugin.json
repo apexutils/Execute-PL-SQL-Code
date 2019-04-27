@@ -1,7 +1,7 @@
 {
   "name" : "APEX Utils - Execute PL/SQL Code",
   "version" : "1.0.1",
-  "description" : "A more powerful Execute PL/SQL Code dynamic action. It includes declarative notifications, spinners & CLOB support.",
+  "description" : "A more powerful Execute PL/SQL Code dynamic action. It includes declarative notifications for success and error, configurable spinners in case of longer processed & CLOB/ JSON support.",
   "keywords" : ["execute plsql", "notifications", "clob", "spinner"],
   "homepage" : "https://github.com/apexutils/Execute-PL-SQL-Code",
   "license" : "MIT",
