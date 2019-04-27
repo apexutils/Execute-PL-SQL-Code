@@ -22,7 +22,7 @@
         "internalName" : "COM.APEXUTILS.EXECUTE_PLSQL_CODE",
         "type" : "dynamic action",
         "demo" : "https://www.apexutils.com",
-        "previewImage" : 
+        "previewImage" : "https://raw.githubusercontent.com/apexutils/Execute-PL-SQL-Code/master/plugin-preview.png"
       }
     }
   }
