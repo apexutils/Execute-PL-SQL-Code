@@ -17,7 +17,7 @@
  "oracle" : {
     "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1", "18.1.0"],
     "apex" : {
-      "versions" : ["18.1.0", "18.2.0", "19.1.0"],
+      "versions" : ["18.2.0", "19.1.0"],
       "plugin" : {
         "internalName" : "COM.APEXUTILS.EXECUTE_PLSQL_CODE",
         "type" : "dynamic action",
