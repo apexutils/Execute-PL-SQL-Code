@@ -15,7 +15,7 @@
     "url" : "https://github.com/apexutils/Execute-PL-SQL-Code"
   },
  "oracle" : {
-    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1", "18.1.0"],
+    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1", "18.1.0", "19.1.0"],
     "apex" : {
       "versions" : ["18.2.0", "19.1.0"],
       "plugin" : {
