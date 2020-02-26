@@ -67,38 +67,9 @@ var apexutils = this.apexutils || {};
             pageItems        = JSON.parse(action.attribute01),
             loaderSettings   = JSON.parse(action.attribute02),
             clobSettings     = JSON.parse(action.attribute03),
-            //actionIdentifier = action.attribute04,
             options          = JSON.parse(action.attribute05),
             errorMessages    = JSON.parse(action.attribute06),
             sync             = (action.waitForResult && options.sync);
-
-        
-        /* Event "au-execute-plsql-start" */
-        /*
-        var eventData = {
-            preventDefault: false,
-            eventId: actionIdentifier
-        };
-        
-        $(document).trigger('au-execute-plsql-start', eventData);
-
-        if(eventData.preventDefault){
-            apex.debug('Execute PL/SQL Code execution with Event Identifier "' + actionIdentifier + '" was prevented.');
-            return;
-        } */
-        /* ------------------------------ */
-
-        // Called by the AJAX clear callback to clear the values in the "Page Items to Return"
-        function _clear() {
-
-            // Only clear if call is async. Clearing has no effect for synchronous calls and is also known to cause
-            // issues with components that use async set value mechanisms (bug #20770935).
-            if ( !sync ) {
-                $( pageItems.itemsToReturn, apex.gPageContext$ ).each(function () {
-                    $s(this, "", null, true);
-                });
-            }
-        }
 
         function _handleResponse( pData ) {
             if(pData.status == 'success'){
@@ -161,24 +132,7 @@ var apexutils = this.apexutils || {};
         }
 
         // Error callback called when the Ajax call fails
-        function _error( pjqXHR, pTextStatus, pErrorThrown ) {
-            
-            /*
-            var data = {
-                pjqXHR: pjqXHR,
-                pTextStatus: pTextStatus,
-                pErrorThrown: pErrorThrown,
-                sessionExpired: pErrorThrown === errorMessages.sessionExpiredError,
-                eventId: actionIdentifier,
-                preventDefault: false
-            };
-           
-            $(document).trigger('au-executeplsql-error', data);
-            
-            if(!data.preventDefault){
-                da.handleAjaxErrors( pjqXHR, pTextStatus, pErrorThrown, resumeCallback );
-            }*/
-            
+        function _error( pjqXHR, pTextStatus, pErrorThrown ) {    
             da.handleAjaxErrors( pjqXHR, pTextStatus, pErrorThrown, resumeCallback );
         }
         
@@ -233,13 +187,14 @@ var apexutils = this.apexutils || {};
             }
         }
 
-        server.plugin ( action.ajaxIdentifier, {
+        server.plugin(action.ajaxIdentifier,
+            {
                 pageItems       : pageItems.itemsToSubmit,   // Already in jQuery selector syntax
                 p_clob_01       : clobToSubmit
-            }, {
+            },
+            {
                 dataType        : 'json',
                 loadingIndicator: pageItems.itemsToReturn,   // Displayed for all "Page Items to Return"
-                clear           : _clear,                    // Clears all "Page Items to Return" before the call
                 success         : function(pData){
                     handle_spinner();
                     _handleResponse(pData);
