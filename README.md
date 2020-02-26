@@ -8,7 +8,7 @@ https://www.apexutils.com/
 
 ## Changelog
 
-#### 1.0.2 - Fixed bug where if the same item was provided for both submit and return, the value was cleared before submitting
+#### 1.0.2 - Removed unnecessary \_clear function call and general code cleanup
 #### 1.0.1 - Added Plugin help text, added #SQLERRM_TEXT# substitution string
 #### 1.0.0 - Initial Release
 
