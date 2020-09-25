@@ -73,6 +73,64 @@ begin
     return l_result;
 end render;
 
+function get_display_value(
+      p_item_name in apex_application_page_items.item_name%TYPE,
+      p_value in varchar2
+    )
+return varchar2
+is
+    v_display_as_code apex_application_page_items.display_as_code%TYPE; 
+    v_lov_named_lov  apex_application_page_items.lov_named_lov%TYPE; 
+    v_lov_definition apex_application_page_items.lov_definition%TYPE;
+    v_lov_display_null apex_application_page_items.lov_display_null%TYPE;
+    v_lov_null_text apex_application_page_items.lov_null_text%TYPE;    
+begin
+  begin
+    select display_as_code,
+           lov_named_lov, 
+           lov_definition,
+           lov_display_null,
+           lov_null_text
+    into   v_display_as_code,
+           v_lov_named_lov,
+           v_lov_definition,
+           v_lov_display_null,
+           v_lov_null_text
+    from apex_application_page_items
+    where application_id = nv('APP_ID')
+    and page_id = nv('APP_PAGE_ID')
+    and item_name = p_item_name;
+  exception
+    when no_data_found then
+      raise_application_error(-20001,'Item '||p_item_name||' not found!');
+  end;   
+  if v_display_as_code != 'NATIVE_POPUP_LOV' then
+    return '';
+  end if;  
+  
+  if v_lov_display_null = 'Yes' then
+      null; 
+  else 
+      v_lov_null_text := '';
+  end if;    
+    
+  if v_lov_named_lov is not null then 
+      return apex_item.text_from_lov (
+        p_value => p_value,
+        p_lov => v_lov_named_lov,
+        p_null_text => v_lov_null_text
+      );
+   else
+      return apex_item.text_from_lov_query  (
+        p_value => p_value,
+        p_query => v_lov_definition,
+        p_null_text => v_lov_null_text
+      );
+  end if;
+    
+end get_display_value;
+
+
 function ajax
     ( p_dynamic_action in apex_plugin.t_dynamic_action
     , p_plugin         in apex_plugin.t_plugin
@@ -92,6 +150,8 @@ is
     l_item_names       apex_application_global.vc_arr2;
     
     l_result           apex_plugin.t_dynamic_action_ajax_result;
+    
+    l_value            varchar2(32767);
 
 begin
     
@@ -115,7 +175,12 @@ begin
                     , p_dynamic_action => p_dynamic_action
                     )
                 );
-            apex_json.write('value', V( l_item_names(i)) );
+            l_value := V( l_item_names(i));    
+            apex_json.write('value', l_value);
+            apex_json.write('display', get_display_value(
+              p_item_name => l_item_names(i),
+              p_value => l_value
+            ));
             apex_json.close_object;
         end loop;
 

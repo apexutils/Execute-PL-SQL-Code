@@ -80,7 +80,12 @@ var apexutils = this.apexutils || {};
                     itemCount = pData.items.length;
                     itemArray = pData.items;
                     for( var i = 0; i < itemCount; i++ ) {
-                        $s( itemArray[i].id, itemArray[i].value, null, options.suppressChangeEvent);
+                        if(itemArray[i].display) {
+                          $s( itemArray[i].id, itemArray[i].value, itemArray[i].display, options.suppressChangeEvent);
+                        } else {
+                          $s( itemArray[i].id, itemArray[i].value, null, options.suppressChangeEvent); 
+                        } 
+                          
                     }
                 }
 
